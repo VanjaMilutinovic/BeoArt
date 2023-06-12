@@ -4,28 +4,28 @@
     <div class="registracija-card">
       <h2 class="registracija-text">Register</h2>
 
-      <span class="registracija-text01">Korisničko ime</span>
+      <span class="registracija-text01">Username</span>
       <input type="text" placeholder="ex. petar" class="registracija-textinput input"
               name="username" v-model="username"/>
-      <span class="registracija-text01">Lozinka</span>
+      <span class="registracija-text01">Password</span>
       <input type="text" placeholder="enter password" class="registracija-textinput input"
               name="password" v-model="password"/>
 
-      <span class="registracija-text01">Ponovljena lozinka</span>
+      <span class="registracija-text01">Repeat password</span>
       <input type="text" placeholder="repeat password" class="registracija-textinput input"
               name='repeat' v-model="repeat"/>
 
-      <span class="registracija-text01">Ime</span>
+      <span class="registracija-text01">Name</span>
       <input type="text" placeholder="enter password" class="registracija-textinput input"
               name="name" v-model="name"/>
       
       <router-link to="/login" class="registracija-navlink">
-        <span>Već imaš nalog?</span>
-        <span class="registracija-text11">Uloguj se!</span>
+        <span>Already have an account?</span>
+        <span class="registracija-text11">Log in!</span>
         <br />
       </router-link>
       <button @click='register()' class="registracija-navlink1 button">
-        Registruj se
+        Register
       </button> 
     </div>
     <app-footer rootClassName="footer-root-class-name7"></app-footer>
@@ -33,11 +33,11 @@
 </template>
 
 <script>
-import AppHeader from '../components/header'
-import AppFooter from '../components/footer'
+import AppHeader from '../components/header-eng'
+import AppFooter from '../components/footer-eng'
 
 export default {
-  name: 'Registracija',
+  name: 'RegistracijaEng',
   components: {
     AppHeader,
     AppFooter,

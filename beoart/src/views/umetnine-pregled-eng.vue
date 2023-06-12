@@ -4,22 +4,22 @@
     <!-- ODAVDE -->
     <div class="lang-choice">
       <button type="button" class="header-button button" @click='ENG()'>
-        ENG
+        SRB
       </button>
     </div>
     <!-- DO OVDE -->
     <select class="umetnine-pregled-select" 
             name='sortiranje' v-model='sortiranje'> 
-      <option value="0" selected>Sortiraj</option>
-      <option value="2">Po Umetniku</option>
-      <option value="1">Po Nazivu</option>
+      <option value="0" selected>Sort</option>
+      <option value="2">By artist</option>
+      <option value="1">By title</option>
     </select>
     <button type="button" class="umetnine-pregled-button1 button"
-            @click='sort()'>Sortiraj</button>
+            @click='sort()'>Sort</button>
     <input type="text" placeholder="pretrazi" class="umetnine-pregled-textinput input" 
             name='pretraga' v-model='pretraga'/>
     <button type="button" class="umetnine-pregled-button button"
-            @click='filter()'>Pretrazi</button>
+            @click='filter()'>Search</button>
     
     <div class="umetnine-pregled-blog">
       <div class="umetnine-pregled-container1">
@@ -146,12 +146,12 @@
 </style>
 
 <script>
-import AppHeader from '../components/header'
-import Card3 from '../components/blog-post-card3.vue'
-import AppFooter from '../components/footer'
-import sveUmetnine from '../data/umetnine.js'
+import AppHeader from '../components/header-eng'
+import Card3 from '../components/blog-post-card3-eng.vue'
+import AppFooter from '../components/footer-eng'
+import sveUmetnine from '../data/umetnineEng.js'
 export default {
-  name: 'UmetninePregled',
+  name: 'UmetninePregledEng',
   components: {
     AppHeader,
     Card3,
@@ -192,7 +192,7 @@ export default {
   },
   methods: {
     ENG(){
-      this.$router.push('/pregled-umetnina-eng/'+this.id)
+      this.$router.push('/pregled-umetnina/'+this.id)
     },
     filter(){ 
       var neededTitle = this.pretraga

@@ -5,7 +5,7 @@
     <!-- ODAVDE -->
     <div class="lang-choice">
       <button type="button" class="header-button button" @click='ENG()'>
-        ENG
+        SRB
       </button>
     </div>
     <!-- DO OVDE -->
@@ -13,17 +13,17 @@
       <h1 class="home-naslov">Dobro došli u BeoArt!</h1>
       <span class="home-misija">
         <span>
-          Naša misija je da Vam obogatimo život i ulepšamo dane najlepšim komadima
-          svetske umetnosti Kod nas možete pratiti najnovije umetnine praviti
-          ponude i pisati svoje mišljenje u vidu poruka. Takođe, imate priliku da
-          pratite najnovije umetnike i podstaknuti ih na razvoj novih umetničkih
-          dela!
+          Our mission is to enrich your life and brighten your days with the most beautiful pieces
+          world art With us you can follow the latest works of art
+          offers and write your opinion in the form of messages. Also, you have the opportunity to
+          follow the latest artists and encourage them to develop new artistic
+          works!
         </span>
         <br />
         <br />
       </span>
       <router-link to="/o-nama" class="home-navlink button">
-        Saznaj više o nama
+        Find out more about us!
       </router-link>
     </div>
     <div class="home-banner1">
@@ -39,17 +39,17 @@
     <div class="home-banner1">
       <div class="home-container4">
         <h1 class="home-budi-u-toku">
-          Želiš da budeš u toku sa najnovijim aktivnostima u BeoArtu?
+          Do you want to keep up to date with the latest activities in BeoArt?
         </h1>
         <span class="home-newsletter">
-          Prijavi se na naš newsletter sada! Potrebno je samo da unesete svoju
-          mejl adresu, a mi ćemo Vas izveštavati o ključnim dešavanjima u BeoArt
-          galeriji!
+          Sign up for our newsletter now! You just need to enter yours
+          email address, and we will report to you about key events in BeoArt
+          gallery!
         </span>
         <div class="home-nl-prijava">
           <input type="text" placeholder="Email ..." class="home-naslov-input input"
                   name="newsletter_mail" v-model="newsletter_mail"/>
-          <button class="home-button button" @click='newsletter()'>Prijavi se</button>
+          <button class="home-button button" @click='newsletter()'>Apply</button>
         </div>
       </div>
       <img
@@ -286,13 +286,13 @@
 </style>
 
 <script>
-import AppHeader from '../components/header'
+import AppHeader from '../components/header-eng'
 import BlogPostCard1 from '../components/blog-post-card1'
-import AppFooter from '../components/footer'
-import Ponude from '../data/ponude'
+import AppFooter from '../components/footer-eng'
+import Ponude from '../data/ponudeEng'
 
 export default {
-  name: 'Home',
+  name: 'HomeEng',
   components: {
     AppHeader,
     BlogPostCard1,
@@ -342,7 +342,7 @@ export default {
       }
     },
     ENG(){
-      this.$router.push('/eng')
+      this.$router.push('/home')
     }
     
   },

@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import NavigationLinks from './navigation-links'
+import NavigationLinks from './navigation-links-eng'
 
 export default {
-  name: 'Header',
+  name: 'HeaderEng',
   props: {
     rootClassName: String,
     image_src: {

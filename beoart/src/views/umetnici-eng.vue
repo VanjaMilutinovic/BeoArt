@@ -4,16 +4,16 @@
     <!-- ODAVDE -->
     <div class="lang-choice">
       <button type="button" class="header-button button" @click='ENG()'>
-        ENG
+        SRB
       </button>
     </div>
     <!-- DO OVDE -->
     <div class="umetnici-testimonial">
       <div class="umetnici-container1">
-        <h1 class="umetnici-text">Umetnici</h1>
+        <h1 class="umetnici-text">Artists</h1>
         <span class="umetnici-text3"> 
-            Na ovoj strani možete videti sve umetnike koji izlažu u našoj galeriji! 
-            Možete preuzeti i spisak izloženih dela za svakog od umetnika.
+            On this page you can see all the artists exhibiting in our gallery!
+            You can also download a list of exhibited works for each artist.
         </span>
         <span class="umetnici-container2" v-for="u in this.umetnici" :key="u.id">
           <UmetniciCard
@@ -119,13 +119,13 @@
 </style>
 
 <script>
-import AppHeader from '../components/header'
-import UmetniciCard from '../components/umetnici-card'
-import AppFooter from '../components/footer'
-import sviUmetnici from '../data/umetnici.js'
+import AppHeader from '../components/header-eng'
+import UmetniciCard from '../components/umetnici-card-eng'
+import AppFooter from '../components/footer-eng'
+import sviUmetnici from '../data/umetniciEng.js'
 
 export default {
-  name: 'Umetnici',
+  name: 'UmetniciEng',
   components: {
     AppHeader,
     UmetniciCard,
@@ -156,7 +156,7 @@ export default {
   },
   methods: {
     ENG(){
-      this.$router.push('/umetnici-eng')
+      this.$router.push('/umetnici')
     }
   }
 }

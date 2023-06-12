@@ -4,19 +4,19 @@
     <!-- ODAVDE -->
     <div class="lang-choice">
       <button type="button" class="header-button button" @click='ENG()'>
-        ENG
+        SRB
       </button>
     </div>
     <!-- DO OVDE -->
 
     <!-- INFO -->
-    <h1 class="o-nama-text">Mi smo BeoArt!</h1>
+    <h1 class="o-nama-text">We are BeoArt!</h1>
     <span class="o-nama-text01">
       <span class="o-nama-text02">
-        Naša misija je da Vam obogatimo život i ulepšamo dane najlepšim komadima
-        svetske umetnosti Kod nas možete pratiti najnovije umetnine praviti ponude
-        i pisati svoje mišljenje u vidu poruka. Takođe, imate priliku da pratite
-        najnovije umetnike i podstaknuti ih na razvoj novih umetničkih dela!
+        Our mission is to enrich your life and brighten your days with the most beautiful pieces
+        world art With us you can follow the latest works of art and make offers
+        and write your opinion in the form of messages. Also, you have the opportunity to follow
+        the latest artists and encourage them to develop new works of art!
       </span>
       <br />
     </span>
@@ -28,22 +28,22 @@
           <span>50</span>
           <span>+</span>
         </h1>
-        <span class="o-nama-tekst">Zadovoljnih kupaca</span>
+        <span class="o-nama-tekst">Satisfied customers</span>
       </div>
       <div class="o-nama-stat">
         <h1 class="o-nama-broj"><span>369</span></h1>
-        <span class="o-nama-tekst">Izloženih umetnina</span>
+        <span class="o-nama-tekst">Exhibited works of art</span>
       </div>
       <div class="o-nama-stat">
         <h1 class="o-nama-broj">
           <span>500</span>
           <span>+</span>
         </h1>
-        <span class="o-nama-tekst">Poruka i ponuda</span>
+        <span class="o-nama-tekst">Message and offer</span>
       </div>
       <div class="o-nama-stat">
         <h1 class="o-nama-broj"><span>24/7</span></h1>
-        <span class="o-nama-tekst">Podrška</span>
+        <span class="o-nama-tekst">Support</span>
       </div>
     </div>
 
@@ -76,19 +76,19 @@
     
     <!-- KONTAKT -->
     <div class="o-nama-kontakt">
-      Kontaktiraj nas 064/ 123 4567
+      Contact us 064/ 123 4567
     </div>
     <app-footer></app-footer>
   </div>
 </template>
 
 <script>
-import AppHeader from '../components/header'
+import AppHeader from '../components/header-eng'
 import BlogPostCard4 from '../components/blog-post-card4'
-import AppFooter from '../components/footer'
+import AppFooter from '../components/footer-eng'
 
 export default {
-  name: 'ONama',
+  name: 'ONamaEng',
   components: {
     AppHeader,
     BlogPostCard4,
@@ -105,7 +105,7 @@ export default {
   },
   methods:{
     ENG(){
-      this.$router.push('/o-nama-eng')
+      this.$router.push('/o-nama')
     }
   }
 }

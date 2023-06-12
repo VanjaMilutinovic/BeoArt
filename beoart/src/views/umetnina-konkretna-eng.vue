@@ -4,7 +4,7 @@
     <!-- ODAVDE -->
     <div class="lang-choice">
       <button type="button" class="header-button button" @click='ENG()'>
-        ENG
+        SRB
       </button>
     </div>
     <!-- DO OVDE -->
@@ -28,29 +28,29 @@
         <div class="umetnina-konkretna-text04">
           {{this.umetnina.desc}}
         </div>
-        <div >Procenjena vrednost: <b>{{this.umetnina.proc_vrednost}}</b></div>
-        <div>Procenjena starost: <b>{{this.umetnina.proc_starost}}</b></div>
+        <div >Estimated value: <b>{{this.umetnina.proc_vrednost}}</b></div>
+        <div>Estimated age: <b>{{this.umetnina.proc_starost}}</b></div>
         <br />
 
         <!-- PONUDE I PORUKE -->
         <div class="umetnina-konkretna-btn-group">
-          <span>Unesite svoju ponudu: </span>
+          <span>Enter your offer: </span>
           <input type="text" placeholder="$500000" class="input umetnina-input1" 
                   name='novaPonuda' v-model="novaPonuda"/>
-          <button class="umetnina-konkretna-button button" @click='ponudi()'>Ponudi</button>
+          <button class="umetnina-konkretna-button button" @click='ponudi()'>Offer</button>
         </div>
         <div>
           <button class="umetnina-button button" @click='showAll()'>
-            Pogledaj sve ponude
+            View all offers
           </button>
         </div>
         <div class="umetnina-konkretna-btn-group1">
-          <span class="umetnina-konkretna-text26">Unesite svoju poruku: </span>
+          <span class="umetnina-konkretna-text26">Enter your message: </span>
           <input
             name='novaPoruka' v-model="novaPoruka"
             type="text" placeholder="text" class="umetnina-input2 input"
           />
-          <button class="umetnina-konkretna-button2 button" @click='posalji()'>Pošalji</button>
+          <button class="umetnina-konkretna-button2 button" @click='posalji()'>Send</button>
         </div>
       </div>
     </div>
@@ -68,7 +68,7 @@
     </div>
     <!-- GALERIJA -->
     <div class="umetnina-konkretna-features">
-      <h1 class="umetnina-konkretna-text27">Galerija slika</h1>
+      <h1 class="umetnina-konkretna-text27">Picture gallery</h1>
       <div class="umetnina-konkretna-container2">
         <FeatureCard1 :image_src='"/"+this.id+"/1.jpg"'></FeatureCard1>
         <FeatureCard1 :image_src='"/"+this.id+"/2.jpg"'></FeatureCard1>
@@ -83,14 +83,14 @@
 </template>
 
 <script>
-import AppHeader from '../components/header'
+import AppHeader from '../components/header-eng'
 import FeatureCard1 from '../components/feature-card1'
-import AppFooter from '../components/footer'
-import Umetnine from '../data/umetnine.js'
+import AppFooter from '../components/footer-eng'
+import Umetnine from '../data/umetnineEng.js'
 import BlogPostCard1 from '../components/blog-post-card1.vue'
 
 export default {
-  name: 'UmetninaKonkretna',
+  name: 'UmetninaKonkretnaEng',
   components: {
     AppHeader,
     FeatureCard1,
@@ -124,7 +124,7 @@ export default {
   },
   methods: {
     ENG(){
-      this.$router.push('/konk-umetnina-eng/'+this.id)
+      this.$router.push('/konk-umetnina/'+this.id)
     },
     getmax(){
       let svePonude = JSON.parse(localStorage.getItem('ponude'))

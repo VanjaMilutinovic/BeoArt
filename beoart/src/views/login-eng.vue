@@ -11,11 +11,11 @@
       <input type="text" class="login-textinput input" placeholder="password here"
               name='password' v-model="password">
       <router-link to="/registracija" class="login-navlink">
-        <span>Nemaš nalog?</span>
-        <span class="login-text4">Registruj se!</span>
+        <span>You do not have an account?</span>
+        <span class="login-text4">Register now!</span>
       </router-link>
       <button @click='login()' class="login-navlink1 button">
-        Uloguj se
+        Log in
       </button> 
     </div>
     <app-footer rootClassName="footer-root-class-name6"></app-footer>
@@ -93,11 +93,11 @@
 </style>
 
 <script>
-import AppHeader from '../components/header'
-import AppFooter from '../components/footer'
-import allUsers from '../data/users.js'
+import AppHeader from '../components/header-eng'
+import AppFooter from '../components/footer-eng'
+import allUsers from '../data/usersEng.js'
 export default {
-  name: 'Login',
+  name: 'LoginEng',
   components: {
     AppHeader,
     AppFooter,

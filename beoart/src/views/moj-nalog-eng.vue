@@ -4,20 +4,20 @@
     <!-- ODAVDE -->
     <div class="lang-choice">
       <button type="button" class="header-button button" @click='ENG()'>
-        ENG
+        SRB
       </button>
     </div>
     <!-- DO OVDE -->
     <h1 class="moj-nalog-text">
-      <span>Zdravo, {{user.name}}!</span>
+      <span>Hello, {{user.name}}!</span>
     </h1>
     <div style="width: 80%">
       <button type="button" class="moj-nalog-button" @click='logout()'> 
-        Izloguj se
+        Log out
       </button>
     </div>
     <span class="moj-nalog-text3">
-      Vaše ponude i poruke:
+      Your offers and messages:
     </span>
     <div class="moj-nalog-blog" style="width: 90%">
       <span class="moj-nalog-container1" v-for='p in this.ponude' :key=p.id>
@@ -121,12 +121,12 @@
 </style>
 
 <script>
-import AppHeader from '../components/header'
+import AppHeader from '../components/header-eng'
 import BlogPostCard2 from '../components/blog-post-card2'
-import AppFooter from '../components/footer'
-import Ponude from '../data/ponude.js'
+import AppFooter from '../components/footer-eng'
+import Ponude from '../data/ponudeEng.js'
 export default {
-  name: 'MojNalog',
+  name: 'MojNalogEng',
   components: {
     AppHeader,
     BlogPostCard2,
@@ -166,7 +166,7 @@ export default {
       this.$router.push('login')
     },
     ENG(){
-      this.$router.push('/moj-nalog-eng')
+      this.$router.push('/moj-nalog')
     }
   }
 

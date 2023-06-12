@@ -4,44 +4,44 @@
     <!-- ODAVDE -->
     <div class="lang-choice">
       <button type="button" class="header-button button" @click='ENG()'>
-        ENG
+        SRB
       </button>
     </div>
     <!-- DO OVDE -->
     <div class="umetnine-testimonial">
       <div class="umetnine-container1">
         <h1 class="umetnine-text">
-          <span>Umetnine</span>
+          <span>Arts</span>
           <br />
           <span></span>
         </h1>
         <span class="umetnine-text3">
           <span>
-            Izaberite jednu od tri kategorija umetnina i uživajte!
+            Choose one of the three art categories and enjoy!
           </span>
         </span>
         
           
         <div class="umetnine-container2">
-          <router-link to="/pregled-umetnina/1">
+          <router-link to="/pregled-umetnina-eng/1">
             <umetnine-card
-            name="SLIKE"
+            name="PICTURES"
             picture_src="/slike.jpg"
             rootClassName="rootClassName"
             class="umetnine-component"
           ></umetnine-card>
           </router-link>
-          <router-link to="/pregled-umetnina/2">
+          <router-link to="/pregled-umetnina-eng/2">
           <umetnine-card
-            name="SKULPTURE"
+            name="SCULPTURES"
             picture_src="/skulpture.jpg"
             rootClassName="rootClassName"
             class="umetnine-component"
           ></umetnine-card>
           </router-link>
-          <router-link to="/pregled-umetnina/3">
+          <router-link to="/pregled-umetnina-eng/3">
           <umetnine-card
-            name="OSTALO"
+            name="OTHER"
             picture_src="/ostalo.webp"
             rootClassName="rootClassName1"
             class="umetnine-component"
@@ -55,12 +55,12 @@
 </template>
 
 <script>
-import AppHeader from '../components/header'
+import AppHeader from '../components/header-eng'
 import UmetnineCard from '../components/umetnine-card'
-import AppFooter from '../components/footer'
+import AppFooter from '../components/footer-eng'
 
 export default {
-  name: 'Umetnine',
+  name: 'UmetnineEng',
   components: {
     AppHeader,
     UmetnineCard,
@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     ENG(){
-      this.$router.push('/umetnine-eng')
+      this.$router.push('/umetnine')
     }
   },
 }
