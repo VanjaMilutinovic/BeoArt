@@ -4,12 +4,7 @@
     <div class="header-nav">
       <navigation-links rootClassName="rootClassName10"></navigation-links>
     </div>
-    <div class="lang-choice">
-      <select>
-        <option value="Option 1" selected>SRB</option>
-        <option value="Option 2">ENG</option>
-      </select>
-    </div>
+
     <div data-role="BurgerMenu" class="header-burger-menu">
       <svg viewBox="0 0 1024 1024" class="header-icon">
         <path
@@ -104,13 +99,7 @@ export default {
 .header-nav {
   display: flex;
 }
-.lang-choice {
-  margin: 10px; margin-right: 20px;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-between;
-}
+
 .header-burger-menu {
   display: none;
 }

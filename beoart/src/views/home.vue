@@ -1,6 +1,11 @@
 <template>
   <div class="home-container">
     <app-header></app-header>
+    <div class="lang-choice">
+      <button type="button" class="header-button button" @click='ENG()'>
+        ENG
+      </button>
+    </div>
     <div class="home-banner">
       <h1 class="home-naslov">Dobro došli u BeoArt!</h1>
       <span class="home-misija">
@@ -19,11 +24,11 @@
       </router-link>
     </div>
     <div class="home-banner1">
-      <span class="home-blog" v-for='p in this.ponude' :key=p.id>
+      <span class="home-blog" v-for='p in this.top3Ponude' :key=p.id>
         <BlogPostCard1 class="home-container1"
-                        :label='p.label' :title='p.title' :author='p.author'
-                        :image_src='p.image_src' :description='p.description' >
-                        </BlogPostCard1>
+                      :label='p.label' :title='p.title' :author='p.author'
+                      :image_src='p.image_src' :description='p.description' >
+                      </BlogPostCard1>
       </span>
     </div>
     
@@ -39,8 +44,9 @@
           galeriji!
         </span>
         <div class="home-nl-prijava">
-          <input type="text" placeholder="Email ..." class="home-naslov-input input"/>
-          <button class="home-button button">Prijavi se</button>
+          <input type="text" placeholder="Email ..." class="home-naslov-input input"
+                  name="newsletter_mail" v-model="newsletter_mail"/>
+          <button class="home-button button" @click='newsletter()'>Prijavi se</button>
         </div>
       </div>
       <img
@@ -55,6 +61,19 @@
 
 
 <style scoped>
+.header-button{
+  color:white;
+  background-color: #9966cc;
+  padding: 10px;
+  border-radius: 8px;
+}
+.lang-choice {
+  margin: 10px; margin-right: 20px;
+  
+  align-self: end;
+
+  justify-content: space-between;
+}
 .home-container {
   width: 100%;
   display: flex;
@@ -102,8 +121,8 @@
 .home-blog {
   width: 100%;
   display: flex;
-  padding: 48px;
-  padding-top: 0; 
+  margin: 48px;
+  margin-top: 0px; 
   max-width: 1400px;
   align-items: center;
   justify-content: space-between;
@@ -277,15 +296,52 @@ export default {
     AppFooter,
   },
   created(){
-    if (localStorage.getItem('ponude')==null)
+    
+    if (localStorage.getItem('ponude')==null){
       localStorage.setItem('ponude', JSON.stringify(Ponude))
+      this.ponude = Ponude
+    }
     else
       this.ponude = JSON.parse(localStorage.getItem('ponude'))
+
+    this.top3Ponude=[]
+    var counter = 0
+    for(var i = this.ponude.length-1; i > -1; i--){
+      if(this.ponude[i].tip == 0){
+        this.top3Ponude.push(this.ponude[i])
+        counter++
+      }
+      if(counter == 3)break
+    }
   },
   data(){
     return{
-      ponude: []
+      ponude: [],
+      top3ponude: [],
+      newsletter_mail: ''
     }
+  },
+  methods: {
+    newsletter(){
+      if (this.newsletter_mail=='')
+        alert('Morate uneti email adresu!')
+      else{
+        if(localStorage.getItem('mails')==null)
+          localStorage.setItem('mails', JSON.stringify([this.newsletter_mail]))
+        else{
+          let all_mails = JSON.parse(localStorage.getItem('mails'))
+          all_mails.push(this.newsletter_mail)
+          localStorage.setItem('mails', JSON.stringify([all_mails]))
+        }
+        
+        alert('Uspešno ste se prijavili na naš newsletter!')
+        this.newsletter_mail=''
+      }
+    },
+    ENG(){
+      this.$router.push('/home-eng')
+    }
+    
   },
   metaInfo: {
     title: 'BeoArt',

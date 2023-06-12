@@ -4,77 +4,73 @@
     <div class="umetnina-konkretna-hero">
       <img
         alt="image"
-        src="/zvezdana%2Bnoc%C3%AC%C2%81%2C%2Bvinsent%2Bvan%2Bgog-1200w.jpeg"
+        :src=this.umetnina.image_src
         class="umetnina-konkretna-image"
       />
       <div class="umetnina-konkretna-container1">
-        <h1 class="umetnina-konkretna-text">Zvezdana noć</h1>
+        <h1 class="umetnina-konkretna-text">
+          {{this.umetnina.title}}
+        </h1>
         <h2 class="umetnina-konkretna-text01">
-          <span class="umetnina-konkretna-text02">Vincent Van Gogh</span>
+          <span class="umetnina-konkretna-text02">
+            {{this.umetnina.label}}
+          </span>
           <br />
         </h2>
-        <span class="umetnina-konkretna-text04">
-          <span>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
-            volutpat turpis.
-            <span v-html="raw3fya"></span>
-          </span>
-          <span><span v-html="rawjunk"></span></span>
-          <span>
-            Mauris luctus rutrum mi ut rhoncus. Integer in dignissim tortor. Lorem
-            <span v-html="raws8d9"></span>
-          </span>
-          <span><span v-html="raw6c1i"></span></span>
-          <span>
-            ipsum dolor sit amet, consectetur adipiscing elit.
-            <span v-html="rawjxn8"></span>
-          </span>
-          <span><span v-html="rawwlr1"></span></span>
-          <span>
-            Mauris luctus rutrum mi ut rhoncus. Integer in dignissim tortor.
-          </span>
-          <br />
-          <br />
-          <span class="umetnina-konkretna-text14">Procenjena vrednost</span>
-          <span>: 555555$</span>
-          <br />
-          <span class="umetnina-konkretna-text17">Procenjena startost</span>
-          <span>: hiljadu godišnji zmaj</span>
-          <br />
-          <span><span v-html="rawzmzd"></span></span>
-          <span><span v-html="rawmlvs"></span></span>
-        </span>
+    
+        <div class="umetnina-konkretna-text04">
+          {{this.umetnina.desc}}
+        </div>
+        <div >Procenjena vrednost: <b>{{this.umetnina.proc_vrednost}}</b></div>
+        <div>Procenjena starost: <b>{{this.umetnina.proc_starost}}</b></div>
+        <br />
+
+        <!-- PONUDE I PORUKE -->
         <div class="umetnina-konkretna-btn-group">
           <span>Unesite svoju ponudu: </span>
-          <input type="text" placeholder="$500000" class="input" />
-          <button class="umetnina-konkretna-button button">Ponudi</button>
+          <input type="text" placeholder="$500000" class="input umetnina-input1" 
+                  name='novaPonuda' v-model="novaPonuda"/>
+          <button class="umetnina-konkretna-button button" @click='ponudi()'>Ponudi</button>
         </div>
-        <button class="umetnina-konkretna-button1 button">
-          <span>
-            <span class="umetnina-konkretna-text24">Pogledaj sve ponude</span>
-            <br />
-          </span>
-        </button>
+        <div>
+          <button class="umetnina-button button" @click='showAll()'>
+            Pogledaj sve ponude
+          </button>
+        </div>
         <div class="umetnina-konkretna-btn-group1">
-          <span class="umetnina-konkretna-text26">Unesite svoju ponudu: </span>
+          <span class="umetnina-konkretna-text26">Unesite svoju poruku: </span>
           <input
-            type="text"
-            placeholder="text"
-            class="umetnina-konkretna-textinput1 input"
+            name='novaPoruka' v-model="novaPoruka"
+            type="text" placeholder="text" class="umetnina-input2 input"
           />
-          <button class="umetnina-konkretna-button2 button">Ponudi</button>
+          <button class="umetnina-konkretna-button2 button" @click='posalji()'>Pošalji</button>
         </div>
       </div>
     </div>
+
+    <!-- SVE PONUDE -->
+    <div class="home-banner1">
+      <span class="home-blog" v-for='p in this.ponudeShowing' :key='p.id'>
+        <span v-if='p.tip==0 && p.id_umetnine==this.id'>
+           <BlogPostCard1 class="home-container1"
+                      :label='p.label' :title='p.title' :author='p.author'
+                      :image_src='p.image_src' :description='p.description' >
+            </BlogPostCard1>
+        </span>
+      </span>
+    </div>
+    <!-- GALERIJA -->
     <div class="umetnina-konkretna-features">
       <h1 class="umetnina-konkretna-text27">Galerija slika</h1>
       <div class="umetnina-konkretna-container2">
-        <feature-card1 rootClassName="rootClassName"></feature-card1>
-        <feature-card1 rootClassName="rootClassName1"></feature-card1>
-        <feature-card1 rootClassName="rootClassName2"></feature-card1>
-        <feature-card1 rootClassName="rootClassName3"></feature-card1>
+        <FeatureCard1 :image_src='"/"+this.id+"/1.jpg"'></FeatureCard1>
+        <FeatureCard1 :image_src='"/"+this.id+"/2.jpg"'></FeatureCard1>
+        <FeatureCard1 :image_src='"/"+this.id+"/3.jpg"'></FeatureCard1>
+        <FeatureCard1 :image_src='"/"+this.id+"/4.jpg"'></FeatureCard1>        
       </div>
     </div>
+
+    <!-- FOOTER -->
     <app-footer rootClassName="footer-root-class-name9"></app-footer>
   </div>
 </template>
@@ -83,6 +79,8 @@
 import AppHeader from '../components/header'
 import FeatureCard1 from '../components/feature-card1'
 import AppFooter from '../components/footer'
+import Umetnine from '../data/umetnine.js'
+import BlogPostCard1 from '../components/blog-post-card1.vue'
 
 export default {
   name: 'UmetninaKonkretna',
@@ -90,18 +88,7 @@ export default {
     AppHeader,
     FeatureCard1,
     AppFooter,
-  },
-  data() {
-    return {
-      raw3fya: ' ',
-      rawjunk: ' ',
-      raws8d9: ' ',
-      raw6c1i: ' ',
-      rawjxn8: ' ',
-      rawwlr1: ' ',
-      rawzmzd: ' ',
-      rawmlvs: ' ',
-    }
+    BlogPostCard1
   },
   metaInfo: {
     title: 'UmetninaKonkretna - BeoArt',
@@ -112,6 +99,112 @@ export default {
       },
     ],
   },
+  props: {
+   id: { 
+      type: String,
+      default: '1',
+    },
+  },
+  data(){
+    return{
+      umetnina: {},
+      user: {},
+      novaPonuda: '',
+      novaPoruka: '',
+      ponude: [],
+      ponudeShowing: [],
+    }
+  },
+  methods: {
+    getmax(){
+      let svePonude = JSON.parse(localStorage.getItem('ponude'))
+      let max = 0
+      for (let i=0; i<svePonude.length; i++){
+        if (svePonude[i].id>max)
+          max = svePonude[i].id
+      }
+      return max
+    },
+    ponudi(){
+      if (localStorage.getItem('ulogovan')==null){
+        this.$router.push('/login')
+        return
+      }
+
+      let kor = JSON.parse(localStorage.getItem('ulogovan'))
+      this.user = kor;
+      let svePonude = JSON.parse(localStorage.getItem('ponude'))
+      let max = 0
+      for (let i=0; i<svePonude.length; i++){
+        if (svePonude[i].id>max)
+          max = svePonude[i].id
+      }
+      let nova = {
+        id: max+1,
+        label: this.umetnina.label,
+        title: this.umetnina.title,
+        description: this.novaPonuda,
+        id_umetnine: this.umetnina.id,
+        author: this.user.name, 
+        image_src: this.umetnina.image_src,
+        tip: 0
+      }
+      svePonude.push(nova)
+      localStorage.setItem('ponude', JSON.stringify(svePonude))
+      this.novaPonuda=''
+      this.ponude=svePonude
+    },
+    posalji(){
+      if (localStorage.getItem('ulogovan')==null){
+        this.$router.push('/login')
+        return
+      }
+      alert(localStorage.getItem('ulogovan'))
+      let kor = JSON.parse(localStorage.getItem('ulogovan'))
+      this.user = kor;
+      let svePonude = JSON.parse(localStorage.getItem('ponude'))
+      let max = 0
+      for (let i=0; i<svePonude.length; i++){
+        if (svePonude[i].id>max)
+          max = svePonude[i].id
+      }
+      let nova = {
+        id: max+1,
+        label: this.umetnina.label,
+        title: this.umetnina.title,
+        id_umetnine: this.umetnina.id,
+        description: this.novaPoruka,
+        author: this.user.name, 
+        image_src: this.umetnina.image_src,
+        tip: 1
+      }
+      svePonude.push(nova)
+      localStorage.setItem('ponude', JSON.stringify(svePonude))
+      this.ponude=svePonude
+      this.novaPoruka=''
+    },
+    showAll(){
+      this.ponude = JSON.parse(localStorage.getItem('ponude'))
+      this.ponudeShowing = this.ponude;
+    }
+  },
+  created(){
+    this.user = localStorage.getItem('ulogovan')
+    if(localStorage.getItem('umetnine')==null){
+      localStorage.setItem('umetnine', JSON.stringify(Umetnine))
+      this.umetnina = Umetnine[this.id-1]
+    }
+    else{
+      let sveUmetnine = JSON.parse(localStorage.getItem('umetnine'))
+      this.umetnina = sveUmetnine[this.id-1]
+    }
+    if (localStorage.getItem('ponude')==null){
+      localStorage.setItem('ponude', JSON.stringify(Ponude))
+      this.ponude = Ponude
+    }
+    else
+      this.ponude = JSON.parse(localStorage.getItem('ponude'))
+  }
 }
 </script>
 
@@ -159,12 +252,6 @@ export default {
   margin-bottom: 16px;
   padding-right: 48px;
 }
-.umetnina-konkretna-text14 {
-  font-weight: 700;
-}
-.umetnina-konkretna-text17 {
-  font-weight: 700;
-}
 .umetnina-konkretna-btn-group {
   display: flex;
   margin-top: 16px;
@@ -185,20 +272,14 @@ export default {
 .umetnina-konkretna-button:hover {
   transform: scale(1.02);
 }
-.umetnina-konkretna-button1 {
-  color: lightgray;
-  width: 40%;
-  position: relative;
-  align-self: flex-start;
-  transition: 0.3s;
+.umetnina-button {
+  color: white;
+  width: 100%;
   font-weight: 700;
-  margin-left: 0px;
-  padding-top: 8px;
-  margin-right: 0px;
-  padding-bottom: 8px;
-  background-color: #303030;
+  padding: 8px;
+  background-color: #9966cc;
 }
-.umetnina-konkretna-button1:hover {
+.umetnina-button:hover {
   transform: scale(1.02);
 }
 .umetnina-konkretna-text24:hover {
@@ -215,12 +296,16 @@ export default {
 .umetnina-konkretna-text26 {
   margin-bottom: 8px;
 }
-.umetnina-konkretna-textinput1 {
-  width: 562px;
-  height: 43px;
-  padding-top: 16px;
+.umetnina-input1 {
+  padding: 7px;
+  margin-left: 16px;
+  border: 2px solid #9966cc;
+}
+.umetnina-input2 {
+  width: 100%;
+  padding: 8px;
   margin-bottom: 16px;
-  padding-bottom: 96px;
+  border: 2px solid #9966cc;
 }
 .umetnina-konkretna-button2 {
   color: lightgray;

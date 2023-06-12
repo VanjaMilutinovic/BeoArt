@@ -6,9 +6,8 @@
       <h1 class="card3-title">{{ title }}</h1>
       <div class="card3-container1">
         <span class="card3-desc">{{ description }}</span>
-        <span class="card3-read-more">Procitaj vise</span>
+        <button @click='readMore()' class="card3-read-more">Procitaj vise</button>
       </div>
-      <span class="card3-author">{{ author }}</span>
     </div>
   </div>
 </template>
@@ -20,6 +19,7 @@
   max-width: 1400px;
   flex-direction: row;
   justify-content: center;
+  margin: 12px;
 }
 .card3-img {
   width: 500px;
@@ -55,8 +55,11 @@
   margin-bottom: 8px;
 }
 .card3-read-more {
-  color: #303030;
   font-weight: 500;
+  color:white;
+  background-color: #9966cc;
+  padding: 5px;
+  margin-top: 10px;
 }
 .card3-author {
   color: #595959;
@@ -124,10 +127,15 @@ export default {
       type: String,
       default: 'Lorem ipsum dolor sit amet',
     },
-    author: {
+    id: {
       type: String,
-      default: 'by Jon Doe 5 hours ago',
-    },
+      default: '1',
+    }
   },
+  methods: {
+    readMore(){
+      this.$router.push('/konk-umetnina/' + this.id)
+    }
+  }
 }
 </script>

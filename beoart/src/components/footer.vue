@@ -30,6 +30,7 @@ export default {
   background-color: #aff0d1;
 }
 .footer-text {
+  font-size: 1.2rem;
   width: 100%;
   height: auto;
   text-align: center;

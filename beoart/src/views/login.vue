@@ -121,8 +121,8 @@ export default {
    created(){
     if (localStorage.getItem('korisnici')==null)
       localStorage.setItem('korisnici', JSON.stringify(allUsers))
-    else
-      this.korisnici = JSON.parse(localStorage.getItem('korisnici'))
+
+    this.korisnici = JSON.parse(localStorage.getItem('korisnici'))
   },
   methods: {
     login(){

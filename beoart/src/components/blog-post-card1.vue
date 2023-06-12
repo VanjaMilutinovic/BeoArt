@@ -27,6 +27,8 @@
   align-items: left;
   flex-direction: column;
   justify-content: center;
+  margin: 48px;
+  margin-top: 0;
 }
 .card:hover {
   transform: scale(1.02);

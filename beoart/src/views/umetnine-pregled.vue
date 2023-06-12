@@ -1,71 +1,36 @@
 <template>
   <div class="umetnine-pregled-container">
     <app-header rootClassName="header-root-class-name"></app-header>
-    <select class="umetnine-pregled-select">
-      <option value="Sortiraj">Sortiraj</option>
-      <option value="Po Umetniku">Po Umetniku</option>
-      <option value="Po Nazivu">Po Nazivu</option>
+    <select class="umetnine-pregled-select" 
+            name='sortiranje' v-model='sortiranje'> 
+      <option value="0" selected>Sortiraj</option>
+      <option value="2">Po Umetniku</option>
+      <option value="1">Po Nazivu</option>
     </select>
-    <input type="text" placeholder=" " class="umetnine-pregled-textinput input" />
-    <button type="button" class="umetnine-pregled-button button">Pretrazi</button>
+    <button type="button" class="umetnine-pregled-button1 button"
+            @click='sort()'>Sortiraj</button>
+    <input type="text" placeholder="pretrazi" class="umetnine-pregled-textinput input" 
+            name='pretraga' v-model='pretraga'/>
+    <button type="button" class="umetnine-pregled-button button"
+            @click='filter()'>Pretrazi</button>
+    
     <div class="umetnine-pregled-blog">
       <div class="umetnine-pregled-container1">
-        <router-link to="/umetnina-konkretna" class="umetnine-pregled-navlink">
-          <blog-post-card3
-            label="Vincent Van Gogh"
-            title="Zvezdana Noc"
-            author=" "
-            image_src="/zvezdana%2Bnoc%C3%AC%C2%81%2C%2Bvinsent%2Bvan%2Bgog-1500w.jpeg"
-            rootClassName="rootClassName1"
-            class="umetnine-pregled-component1"
-          ></blog-post-card3>
-        </router-link>
+        <div  class="umetnine-pregled-navlink" v-for='u in this.umetnineShowing' :key=u.id>
+           <span v-if='u.type==this.id'>
+          <Card3
+            :id="u.id"
+            :label="u.label"
+            :title="u.title"
+            :image_src="u.image_src"
+          ></Card3>
+          </span>
+        </div>
       </div>
-      <div class="umetnine-pregled-container2">
-        <blog-post-card3
-          label="J. Verner"
-          title="Devojka sa bisernim minđušama"
-          author=" "
-          image_src="/40120_girl-with-a-pearl-earring-g1bc78cda1-1920_orig-1500w.jpg"
-          rootClassName="rootClassName2"
-          class="umetnine-pregled-component2"
-        ></blog-post-card3>
-      </div>
-      <blog-post-card3
-        label="Pavle Paja Jovanovic"
-        title="Borba Petlova"
-        author=" "
-        image_src="/gmsu0408_borba-petlova-1500w.jpg"
-        rootClassName="rootClassName"
-      ></blog-post-card3>
     </div>
     <app-footer rootClassName="footer-root-class-name1"></app-footer>
   </div>
 </template>
-
-<script>
-import AppHeader from '../components/header'
-import BlogPostCard3 from '../components/blog-post-card3'
-import AppFooter from '../components/footer'
-
-export default {
-  name: 'UmetninePregled',
-  components: {
-    AppHeader,
-    BlogPostCard3,
-    AppFooter,
-  },
-  metaInfo: {
-    title: 'UmetninePregled - BeoArt',
-    meta: [
-      {
-        property: 'og:title',
-        content: 'UmetninePregled - BeoArt',
-      },
-    ],
-  },
-}
-</script>
 
 <style scoped>
 .umetnine-pregled-container {
@@ -78,20 +43,36 @@ export default {
   justify-content: flex-start;
 }
 .umetnine-pregled-select {
-  top: 122px;
+  margin-top: 150px;
   left: 69px;
   position: absolute;
   align-self: flex-start;
+  color: #9966cc;
+  border: 2px solid #9966cc;
+  padding: 3px;
 }
 .umetnine-pregled-textinput {
-  top: 121px;
+  top: 150px;
+  border: 2px solid #9966cc;
   right: 133px;
   position: absolute;
   align-self: flex-end;
 }
+.umetnine-pregled-button1 {
+  top: 150px;
+  left: 220px;
+  position: absolute;
+  color:white;
+  background-color: #9966cc;
+  padding: 5.5px;
+
+}
 .umetnine-pregled-button {
-  top: 120px;
+  top: 150px;
   right: 23px;
+  color:white;
+  background-color: #9966cc;
+  padding: 5px;
   position: absolute;
 }
 .umetnine-pregled-blog {
@@ -104,6 +85,7 @@ export default {
   justify-content: space-between;
 }
 .umetnine-pregled-container1 {
+  width: 100%;
   display: flex;
   align-items: center;
   margin-bottom: 32px;
@@ -112,6 +94,7 @@ export default {
 }
 .umetnine-pregled-navlink {
   display: contents;
+  margin: 24px;
 }
 .umetnine-pregled-component1 {
   text-decoration: none;
@@ -141,3 +124,106 @@ export default {
   }
 }
 </style>
+
+<script>
+import AppHeader from '../components/header'
+import Card3 from '../components/blog-post-card3.vue'
+import AppFooter from '../components/footer'
+import sveUmetnine from '../data/umetnine.js'
+export default {
+  name: 'UmetninePregled',
+  components: {
+    AppHeader,
+    Card3,
+    AppFooter,
+  },
+  metaInfo: {
+    title: 'UmetninePregled - BeoArt',
+    meta: [
+      {
+        property: 'og:title',
+        content: 'UmetninePregled - BeoArt',
+      },
+    ],
+  },
+  props: {
+   id: {
+      type: String,
+      default: '1',
+    },
+  },
+  data(){
+    return{
+      umetnine: [],
+      pretraga: '',
+      sortiranje: '',
+      umetnineShowing: []
+    }
+  },
+  created(){
+    if (localStorage.getItem('umetnine')==null){
+      localStorage.setItem('umetnine', JSON.stringify(sveUmetnine))
+      this.umetnine = sveUmetnine
+      this.umetnineShowing = sveUmetnine
+    }
+    else
+      this.umetnine = JSON.parse(localStorage.getItem('umetnine'))
+      this.umetnineShowing = this.umetnine
+  },
+  methods: {
+    filter(){ 
+      var neededTitle = this.pretraga
+      this.umetnineShowing = []
+      for(var i = 0; i < this.umetnine.length; i++){
+        if(this.umetnine[i].title == neededTitle || this.umetnine[i].label == neededTitle){
+          this.umetnineShowing.push(this.umetnine[i])
+        }
+      }
+    },
+    sort(){
+      var currentType = this.id
+      var typeOfSort = this.sortiranje
+
+      if(typeOfSort == 0)
+        this.umetnineShowing = this.umetnine
+
+      if(typeOfSort == 1){//sort po nazivu
+        var umetnineForSort = []
+        for(var i = 0; i < this.umetnine.length; i++){
+          if(this.umetnine[i].type == currentType){
+            umetnineForSort.push(this.umetnine[i])
+          }
+        }
+        for(var i = 0; i < umetnineForSort.length; i++){
+          for(var j = 0; j < umetnineForSort.length; j++){
+            if(umetnineForSort[i].title < umetnineForSort[j].title){
+              var x = umetnineForSort[i]
+              umetnineForSort[i] = umetnineForSort[j]
+              umetnineForSort[j] = x
+            }
+           }
+          this.umetnineShowing = umetnineForSort
+        }
+      }
+      if(typeOfSort == 2){//soru po imenuu
+        var umetnineForSort = []
+        for(var i = 0; i < this.umetnine.length; i++){
+          if(this.umetnine[i].type == currentType){
+            umetnineForSort.push(this.umetnine[i])
+          }
+        }
+        for(var i = 0; i < umetnineForSort.length; i++){
+          for(var j = 0; j < umetnineForSort.length; j++){
+            if(umetnineForSort[i].label < umetnineForSort[j].label){
+              var x = umetnineForSort[i]
+              umetnineForSort[i] = umetnineForSort[j]
+              umetnineForSort[j] = x
+            }
+          }
+          this.umetnineShowing = umetnineForSort
+        }
+      }
+    }
+  }
+}
+</script>

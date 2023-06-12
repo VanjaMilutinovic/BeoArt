@@ -28,6 +28,7 @@
   text-decoration: none;
   margin-left: 10px;
   margin-right: 10px;
+  font-size: 1.2rem;
   
 }
 @media(max-width: 767px) {

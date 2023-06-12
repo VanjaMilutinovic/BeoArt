@@ -21,14 +21,16 @@ const routes = [
     component: Umetnine
   },
   {
-    path: '/konk-umetnina',
+    path: '/konk-umetnina/:id',
     name: 'konk-umetnina',
-    component: KonkretnaUmetnina
+    component: KonkretnaUmetnina,
+    props: true
   },
   {
-    path: '/pregled-umetnina',
+    path: '/pregled-umetnina/:id',
     name: 'pregled-umetnina',
-    component: PregledUmetnina
+    component: PregledUmetnina,
+    props: true
   },
   {
     path: '/moj-nalog',

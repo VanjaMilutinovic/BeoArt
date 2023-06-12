@@ -6,11 +6,11 @@
       class="card2-img"
     />
     <div class="card2-container">
-      <div class="card2-container1">
-        <span class="card2-label">{{ label }}</span>
-      </div>
+
+      <div class="card2-label">{{ label }}</div>
       <h1 class="card2-title">{{ title }}</h1>
       <span class="card2-desc">{{ description }}</span>
+
       <button @click='obrisi()' type="button" class="card2-btn button">
         Obriši
       </button>
@@ -23,7 +23,7 @@
   width: 100%;
   display: flex;
   max-width: 1400px;
-  box-shadow: 4px 4px 10px 0px rgba(18, 18, 18, 0.1);
+  box-shadow: 4px 4px 10px 0px rgba(18, 18, 18, 0.2);
   transition: 0.3s;
   align-items: stretch;
   flex-direction: row;
@@ -43,11 +43,8 @@
   width: 100%;
   display: flex;
   align-items: flex-start;
-  padding-top: 32px;
-  padding-left: 32px;
-  padding-right: 32px;
+  padding: 32px;
   flex-direction: column;
-  padding-bottom: 32px;
   justify-content: space-between;
 }
 .card2-container1 {
@@ -62,14 +59,17 @@
   color: #595959;
   font-weight: 600;
   text-transform: uppercase;
+  width: 100%;
 }
 .card2-title {
   margin-bottom: 32px;
+  width: 100%;
 }
 .card2-desc {
   color: #595959;
   font-size: 1.25rem;
   margin-bottom: 32px;
+  width: 100%;
 }
 .card2-btn {
   align-self: flex-end;

@@ -67,10 +67,6 @@ export default {
       default:
         'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDd8fHBvcnRyYWl0fGVufDB8fHx8MTYyNjM3ODk3Mg&ixlib=rb-1.2.1&w=300',
     },
-    quote: {
-      type: String,
-      default: 'dasdas',
-    },
     rootClassName: String,
     picture_alt: {
       type: String,
@@ -79,6 +75,10 @@ export default {
     name: {
       type: String,
       default: 'Jane Doe',
+    },
+    id: {
+      type: String,
+      default: '1',
     },
   },
 }

@@ -4,42 +4,42 @@
     <div class="umetnine-testimonial">
       <div class="umetnine-container1">
         <h1 class="umetnine-text">
-          <span>What they’re saying</span>
+          <span>Umetnine</span>
           <br />
           <span></span>
         </h1>
         <span class="umetnine-text3">
           <span>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
-            volutpat turpis. Mauris luctus rutrum mi ut rhoncus. Integer in
-            dignissim tortor.
+            Izaberite jednu od tri kategorija umetnina i uživajte!
           </span>
         </span>
+        
+          
         <div class="umetnine-container2">
-          <router-link to="/umetnine-pregled">
+          <router-link to="/pregled-umetnina/1">
             <umetnine-card
-              name=" SLIKE"
-              role="SLIKE"
-              quote=" Saznajte najnovije i nbla bla informacije"
-              picture_alt="nema"
-              picture_src="/40120_girl-with-a-pearl-earring-g1bc78cda1-1920_orig-300w.jpg"
-              rootClassName="rootClassName2"
-              class="umetnine-component1"
-            ></umetnine-card>
+            name="SLIKE"
+            picture_src="/slike.jpg"
+            rootClassName="rootClassName"
+            class="umetnine-component"
+          ></umetnine-card>
           </router-link>
+          <router-link to="/pregled-umetnina/2">
           <umetnine-card
             name="SKULPTURE"
-            picture_src="/6-myron-discobolus-300h.jpg"
+            picture_src="/skulpture.jpg"
             rootClassName="rootClassName"
-            class="umetnine-component2"
+            class="umetnine-component"
           ></umetnine-card>
+          </router-link>
+          <router-link to="/pregled-umetnina/3">
           <umetnine-card
             name="OSTALO"
-            quote="dassa"
-            picture_src="/girl-with-balloon-1-300h.webp"
+            picture_src="/ostalo.webp"
             rootClassName="rootClassName1"
-            class="umetnine-component3"
+            class="umetnine-component"
           ></umetnine-card>
+          </router-link>
         </div>
       </div>
     </div>
@@ -96,11 +96,11 @@ export default {
   justify-content: center;
 }
 .umetnine-text {
-  color: lightgray;
+  color: #303030;
 }
 .umetnine-text3 {
-  color: lightgray;
-  font-size: 0.75rem;
+  color: #303030;
+  font-size: 1rem;
   max-width: 600px;
   margin-top: 16px;
   text-align: center;
@@ -112,15 +112,10 @@ export default {
   grid-gap: 32px;
   grid-template-columns: 1fr 1fr 1fr;
 }
-.umetnine-component1 {
+.umetnine-component {
   text-decoration: none;
 }
-.umetnine-component2 {
-  text-decoration: none;
-}
-.umetnine-component3 {
-  text-decoration: none;
-}
+
 @media(max-width: 991px) {
   .umetnine-text {
     text-align: center;
